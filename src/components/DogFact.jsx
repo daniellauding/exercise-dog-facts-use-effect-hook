@@ -1,19 +1,40 @@
 // DogFact Component
-// import {useState, useEffect} from 'react'
+import {useEffect} from 'react'
 
 export const DogFact = ({ fact }) => {
+
+
+  useEffect(() => {
+    console.log(fact);
+
+    const id = setInterval(() => {
+      console.log('hej')
+    }, 3000)
+
+    console.log('interval id', id)
+
+    // clearInterval(id)
+
+    return () => {
+      console.log(`rensa timer ${id}`)
+      clearInterval(id)
+    }
+    
+  },[])
+
+return <div>{fact.attributes.body} dog fact here.</div>;
+};
+
+
+
+
   // const [facts, setFacts] = useState()
   // const body = result.data.attributes.body
 
-  // useEffect(() => {
-    console.log(fact);
-  // })
   // Hint: Extract the 'body' from 'attributes' of the 'fact' prop
 
   // Hint: Render the 'cleanFact' if available, otherwise show a loading message
   // return <div>{fact} dog fact here.</div>;
-return <div>{fact.attributes.body} dog fact here.</div>;
-};
 
 // Hint: To use this component, import it in your main App component and pass the 'fact' prop to it.
 // Example: <DogFact fact={yourFactData} />

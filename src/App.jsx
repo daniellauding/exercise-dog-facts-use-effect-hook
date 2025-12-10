@@ -4,6 +4,7 @@ import { DogFact } from "./components/DogFact";
 export const App = () => {
   // Hint: Initialize state for storing the dog fact
   const [dogFact, setDogFact] = useState([]);
+  const [visible, setVisible] = useState(true);
 
   // Hint: Define the API endpoint
   const LIMIT = `?limit=5`
@@ -23,12 +24,19 @@ export const App = () => {
     fetchDogFact()
   }, []);
 
+  const handleClick = () => {
+    setVisible(prev => !prev)
+  }
+
   return (
     <div className="App">
-      {dogFact.map((fact) => (
+      <button onClick={handleClick}>{visible ? 'Hide' : 'Show'} facts</button>
+
+      {visible && dogFact.map((fact) => (
         // <DogFact key={fact.id} fact={fact.attributes.body} />
         <DogFact key={fact.id} fact={fact} />
       ))}
+      
     </div>
   );
 };
